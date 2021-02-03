@@ -1,1 +1,27 @@
-<p class="animated fadeIn fast">about works!</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--
+        <app-item-persona [datos]="persona" *ngFor="let persona of personas" class="d-table-cell">
+
+        </app-item-persona>
+      -->
+        <tr *ngFor="let persona of personas" (click)="showModal(persona)">
+            <th scope="row">{{persona.id}}</th>
+            <td>{{persona.nombre}}</td>
+            <td>{{persona.cargo}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+<app-modal (empleado)="datoE" #modal>
+
+</app-modal>

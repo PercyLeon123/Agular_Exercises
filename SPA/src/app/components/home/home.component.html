@@ -4,3 +4,16 @@
         <p class="lead">Esta es una app de comic</p>
     </div>
 </div>
+
+<form class="mt-5" #f="ngForm" (ngSubmit)="addPersonas(f)" ngNativeValidate>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="text" class="form-control" name="nombre" aria-describedby="emailHelp" ngModel required>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="text" class="form-control" name="cargo" ngModel required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
