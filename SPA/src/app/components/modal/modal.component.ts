@@ -1,4 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Empleado } from '../../models/empleado';
+import { NgForm } from '@angular/forms';
+import { DataApiService } from '../../services/data-api.service';
 
 @Component({
   selector: 'app-modal',
@@ -8,21 +11,39 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
   modal : boolean = false;
-  datoE : string = "";
-  //@Input() empleado : any = {};
+  datoE! : Empleado;
+  nombre:string="";
+  cargo:string="";
 
-  constructor() { }
+  //@Input() empleado : any = {};
+  @Output() Listado : EventEmitter<number>;
+
+  constructor(private dataApi : DataApiService) { 
+    this.Listado = new EventEmitter();
+  }
 
   ngOnInit(): void {
     //this.datoE = this.empleado.nombre;
   }
 
   recibir(empleado: any): void{
-    this.datoE = empleado.nombre;
+    this.datoE = empleado;
+    this.nombre = empleado.nombre;
+    this.cargo = empleado.cargo;
   }
 
   public EventoModal():void {
     this.modal = !this.modal;
   }
 
+  updatePersonas(form: NgForm){
+    console.log(form.value.nombre);
+    this.dataApi.updatePersonas({
+      id : this.datoE.id,
+      nombre : form.value.nombre,
+      cargo: form.value.cargo
+    });
+    
+    this.Listado.emit(this.datoE.id);
+  }
 }
