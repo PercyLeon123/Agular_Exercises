@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   addPersonas(form: NgForm){
     console.log(form.value.nombre);
     this.dataApi.addPersonas({
-      nombre : form.value.email,
+      nombre : form.value.nombre,
       cargo: form.value.cargo
     });
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { DataApiService, Empleado } from '../../services/data-api.service';
+import { DataApiService } from '../../services/data-api.service';
 import { ModalComponent } from '../modal/modal.component';
+import { Empleado } from '../../models/empleado';
 
 @Component({
   selector: 'app-about',
@@ -10,7 +11,7 @@ export class AboutComponent implements OnInit {
 
   personas:any = [];
   datoE : any = {};
-  @ViewChild('modal') modals : ModalComponent;
+  @ViewChild('modal') modals! : ModalComponent;
 
 
   constructor( private dataApi : DataApiService) { }
@@ -23,9 +24,9 @@ export class AboutComponent implements OnInit {
      this.dataApi.getAllPersonas().subscribe(books => this.personas = books );
   }
 
-  showModal(Empleado : any):void {
-    this.datoE = Empleado;
+  showModal(empleado : Empleado):void {
+    this.datoE = empleado;
       this.modals.EventoModal();
-      this.modals.recibir(Empleado);
+      this.modals.recibir(empleado);
   }
 }

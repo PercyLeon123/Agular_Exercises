@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Observable } from 'rxjs/internal/Observable'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
+import { Empleado } from '../models/empleado';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,4 @@ export class DataApiService {
     .subscribe(data => data);
   }
 
-}
-
-export interface Empleado{
-  nombre: string;
-  cargo: string;
 }
